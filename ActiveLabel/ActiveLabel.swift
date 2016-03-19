@@ -87,6 +87,11 @@ public protocol ActiveLabelDelegate: class {
         setupLabel()
     }
     
+    public override func intrinsicContentSize() -> CGSize {
+        let labelHeight = self.sizeThatFits(CGSize(width: CGRectGetWidth(self.frame), height: CGFloat.max)).height
+        return CGSize(width: self.frame.size.width, height: labelHeight + self.layoutMargins.top + self.layoutMargins.bottom)
+    }
+    
     public override func drawTextInRect(rect: CGRect) {
         let range = NSRange(location: 0, length: textStorage.length)
         
